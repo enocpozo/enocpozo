@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardia Nocturna UBO68</title>
+    <script>
+        async function registrarRespuesta() {
+            const respuesta = document.getElementById('respuesta').value;
+
+            // Cambia la URL a la del Google Apps Script que acabas de copiar
+            const response = await fetch('https://script.google.com/macros/s/AKfycbx-MuB291uTN8FwlTuJaXmJwE1iWVp5tgW8ePjskWB0XMukAfpRCVtSP5yOcVlD2GOLIw/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({ respuesta })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert('Bombero Registrado');
+                document.getElementById('respuesta').value = ''; // Borra el contenido del input
+            } else {
+                alert('No se encuentra en el Registro');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Registro Único de Guardia Nocturna UBO68</h1>
+    <input type="text" id="respuesta" placeholder="Ingresa tu código aquí">
+    <button onclick="registrarRespuesta()">Registrar</button>
+</body>
+</html>
